@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout=http://www.ultraq.net.nz/thymeleaf/layout
+      layout:decorate="layouts/layout">
+<body>
+<div class="col-lg-10" layout:fragment="content">
+    <h3 class="text-center mt-3">Students</h3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Birthday</th>
+            <th scope="col">City</th>
+            <th scope="col">Details</th>
+            <th scope="col">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="student : ${students}">
+            <th scope="row" th:text="${student.id}"></th>
+            <td th:text="${student.name}"></td>
+            <td th:text="${student.birthday}"></td>
+            <td th:text="${student.city!=null?student.city.city:''}"></td>
+            <td><a th:href="@{'/details/' + ${student.id}}" class="btn btn-success">Details</a></td>
+            <td><a th:href="@{'/delete-student/' + ${student.id}}" class="btn btn-danger">Delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
